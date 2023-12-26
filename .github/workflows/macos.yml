@@ -52,6 +52,11 @@ jobs:
         if: ${{ matrix.os == 'macos-11' }}
         run: |
           brew install glbinding@2
+          echo "Add glbinding to path"
+          echo 'export PATH="/usr/local/opt/glbinding@2/bin:$PATH"' >> /Users/runner/.bash_profile
+          export LDFLAGS="-L/usr/local/opt/glbinding@2/lib"
+          export CPPFLAGS="-I/usr/local/opt/glbinding@2/include"
+          
           brew install cmake googletest bash rename libogg libvorbis glew \
                        openal-soft sdl2 sdl2_image sdl2_ttf freetype harfbuzz \
                        fribidi glib gtk-doc libraqm glm zlib
